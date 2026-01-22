@@ -1,51 +1,51 @@
-{{- /*
-Renders a menu for the given menu ID.
-
-@context {page} page The current page.
-@context {string} menuID The menu ID.
-
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
-
-{{- $page := .page }}
-{{- $menuID := .menuID }}
+{{- $page := .page -}}
+{{- $menuID := .menuID -}}
 
 {{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-    </ul>
-  </nav>
+<div class="collapse navbar-collapse" id="mainNav"> 
+  <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
+    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }} 
+  </ul> 
+</div>
 {{- end }}
 
 {{- define "_partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
-    {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
-    {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
-      {{- end }}
-    {{- end }}
-    <li>
-      <a
-        {{- range $k, $v := $attrs }}
-          {{- with $v }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- $hasChildren := .HasChildren }}
+    {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
+
+    <li class="nav-item {{ if $hasChildren }}dropdown{{ end }}">
+      
+      {{- if $hasChildren }}
+        <a class="nav-link dropdown-toggle {{ if $isActive }}active{{ end }}"
+          href="#"
+          id="navbarDropdown-{{ .Identifier }}"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false">
+          {{ .Name }}
+        </a>
+
+        <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown-{{ .Identifier }}">
+          {{- range .Children }}
+            <li>
+              <a class="dropdown-item {{ if $page.IsMenuCurrent .Menu . }}active{{ end }}"
+                href="{{ .URL | relLangURL }}">
+                {{ .Name }}
+              </a>
+            </li>
           {{- end }}
-        {{- end -}}
-      >{{ $name }}</a>
-      {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
         </ul>
+
+      {{- else }}
+        <a class="nav-link {{ if $isActive }}active{{ end }}"
+          href="{{ .URL | relLangURL }}">
+          {{ .Name }}
+        </a>
       {{- end }}
+
     </li>
   {{- end }}
+
 {{- end }}

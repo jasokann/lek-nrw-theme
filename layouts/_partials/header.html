@@ -1,2 +1,14 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<div class="container intro-header" >
+    {{ $logo := .Site.Params.logo }}
+    {{ if and $logo .Site.Params.showLogoOnHero }}
+        <a href="{{ .Site.BaseURL }}">
+        <img src="{{ .Site.BaseURL }}{{ $logo }}" alt="{{ .Site.Title }}" class="hero-logo">
+        </a>
+    {{ else }}
+        <h1>{{ .Site.Title }}</h1>
+        {{ with .Site.Params.subTitle }}
+        <span class="subheading">{{ . }}</span>
+        {{ end }}
+    {{ end }}
+    <span class="subheading">{{ .Site.Params.slogan }}</span>
+</div>

@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" class="h-100">
 <head>
   {{ partial "head.html" . }}
 </head>
-<body>
-  <header>
+<body class="d-flex flex-column h-100">
+  <header class="bg-white text-center" style="background-image: url('{{ .Site.Params.header_image | relURL }}')">
     {{ partial "header.html" . }}
   </header>
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    {{ partial "nav.html" . }}
+  </nav>
+  <div class="container my-5 flex-shrink-0">
+      <div class="row g-4">
+          <main class="col-lg-8">
+              <div class="main-content p-4 p-md-5">
+                  {{ block "main" . }}{{ end }}
+              </div>
+          </main>
+
+          <aside class="col-lg-4">
+              <div class="card border-0 shadow-sm p-3">
+                  <h4 class="h5 border-bottom pb-2 mb-3">Neueste Beiträge</h4>
+                  <ul class="list-unstyled">
+                      <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">PM – Forderungen zur Verwendung des Sondervermögens...</a></li>
+                      <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">20 Jahre Landeselternkonferenz NRW</a></li>
+                      {{ range site.RegularPages }}
+                        <ul class="list-unstyled">
+                          <li class="mb-2"></li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} - {{ .Summary | truncate 30 }} </a></li>
+                        </ul>
+                      {{ end }}
+                  </ul>
+              </div>
+
+
+        
+          </aside>
+      </div>
+  </div>
   <footer>
     {{ partial "footer.html" . }}
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
