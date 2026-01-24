@@ -26,7 +26,7 @@
                       <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">20 Jahre Landeselternkonferenz NRW</a></li>
                       {{ range site.RegularPages }}
                         <ul class="list-unstyled">
-                          <li class="mb-2"></li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} - {{ .Summary | truncate 30 }} </a></li>
+                          <li class="mb-2"></li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} - {{ .Summary | plainify | truncate 30 }} </a></li>
                         </ul>
                       {{ end }}
                   </ul>
