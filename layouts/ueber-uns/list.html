@@ -1,0 +1,23 @@
+{{ define "main" }}
+  {{ partial "breadcrumb.html" . }}
+  <article class="section-page">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    <section class="children-grid">
+      <h2>Inhalte</h2>
+      <ul>
+        {{ range .Pages.ByWeight }}
+          <li>
+            <a href="{{ .RelPermalink }}" class="child-link">
+              <h3>{{ .Title }}</h3>
+              {{ with .Params.description }}
+                <p>{{ . }}</p>
+              {{ end }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  </article>
+{{ end }}

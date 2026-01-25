@@ -1,5 +1,5 @@
 {{ define "main" }}
-  
+  {{ partial "breadcrumb.html" . }}
   {{ .Content }}
   {{ range .Pages }}
     <section>
