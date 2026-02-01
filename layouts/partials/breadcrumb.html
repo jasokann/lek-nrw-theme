@@ -1,15 +1,5 @@
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-      <!-- 1. Home (fest) -->
-      <li class="breadcrumb-item">
-        <a class="link-body-emphasis" href="{{ "/" | relURL }}">
-          <svg class="bi" width="16" height="16" aria-hidden="true">
-            <use xlink:href="#house-door-fill"></use>
-          </svg>
-          <span class="visually-hidden">Home</span>
-        </a>
-      </li>
-      
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">  
       <!-- 2. Ancestors mit Index (Ebene 2, 3, ...) -->
       {{- $index := 0 -}}
       {{- range .Ancestors.Reverse -}}
@@ -17,7 +7,10 @@
         <li class="breadcrumb-item">
           {{- if eq $index 1 -}}<!-- EBEENE 2: Speziell stylen -->
             <a class="link-body-emphasis fw-bold text-primary" href="{{ .RelPermalink }}">
-              {{ .LinkTitle | default .Title | safeHTML }}
+              <svg class="bi" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#house-door-fill"></use>
+              </svg>
+              <span class="visually-hidden">Home</span>
             </a>
           {{- else -}}<!-- EBEENE 3+: Normal -->
             <a class="link-body-emphasis fw-semibold text-decoration-none" href="{{ .RelPermalink }}">
