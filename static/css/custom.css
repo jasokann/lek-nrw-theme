@@ -1,17 +1,17 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #01b050;
+  background-color: #cef4be;
 }
 
 .navbar {
   background-color: #cef4be !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #0000001a;
 }
 
 .main-content {
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px #0000000d;
 }
 
 .hero-logo {
@@ -34,21 +34,4 @@ footer {
   color: #138517 !important;
 }
 
-.breadcrumb ol {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 0 1rem 0;
-}
 
-.breadcrumb li {
-  display: inline;
-}
-
-.breadcrumb li:not(:last-child)::after {
-  content: " » ";
-  padding: 0 0.25rem;
-}
-
-.breadcrumb li.active {
-  font-weight: 600;
-}
