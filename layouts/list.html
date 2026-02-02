@@ -5,15 +5,13 @@
     {{ .Content }}
 
     <section class="children-grid">
-      <h2>Inhalte</h2>
+      <h2>Inhaltee</h2>
       <ul>
         {{ range .Pages.ByWeight }}
           <li>
             <a href="{{ .RelPermalink }}" class="child-link">
               <h3>{{ .Title }}</h3>
-              {{ with .Params.description }}
-                <p>{{ . }}</p>
-              {{ end }}
+
             </a>
           </li>
         {{ end }}

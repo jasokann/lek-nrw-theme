@@ -19,10 +19,10 @@
       
       {{- if $hasChildren }}
         <a class="nav-link dropdown-toggle {{ if $isActive }}active{{ end }}"
-          href="#"
+          href="{{ .URL | relLangURL }}"
           id="navbarDropdown-{{ .Identifier }}"
           role="button"
-          data-bs-toggle="dropdown"
+          
           aria-expanded="false">
           {{ .Name }}
         </a>

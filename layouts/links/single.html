@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ partial "breadcrumb.html" . }}
+   <div class="row g-4">  <!-- g-4 = responsive Gutter/Abstand -->
+        {{ range .Params.cards }}
+          <div class="col-lg-4 col-md-6 col-sm-12">  <!-- 3 Cards/Zeile auf Desktop, 2 auf Tablet, 1 auf Mobile -->
+            <a href="{{ .link }}" class="child-link">
+                <div class="card h-100">
+                  <div class="card-body d-flex flex-column">
+                    <img src="{{ .image | relURL }}" class="card-img-top" alt=" {{ .Title }}" >
+                  </div>
+                  <div class="card-body d-flex flex-column">              
+                    <h5 class="card-title">{{ .title }}</h5>
+                      {{ with .text }}
+                        <p class="card-text flex-grow-1">{{ . }}</p>
+                      {{ end }}
+                    <!-- <a href="{{ .RelPermalink }}" class="btn btn-primary mt-auto">Öffnen</a> -->
+                  </div>
+                </div>
+            </a>    
+          </div>
+        {{ end }}
+      </div>
+{{ end }}
+

@@ -22,12 +22,15 @@
               <div class="card border-0 shadow-sm p-3">
                   <h4 class="h5 border-bottom pb-2 mb-3">Neueste Beiträge</h4>
                   <ul class="list-unstyled">
-                      <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">PM – Forderungen zur Verwendung des Sondervermögens...</a></li>
-                      <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">20 Jahre Landeselternkonferenz NRW</a></li>
-                      {{ range site.RegularPages }}
-                        <ul class="list-unstyled">
-                          <li class="mb-2"></li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} - {{ .Summary | plainify | truncate 30 }} </a></li>
-                        </ul>
+                      <!-- 
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">PM – Forderungen zur Verwendung des Sondervermögens...</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">20 Jahre Landeselternkonferenz NRW</a></li>
+                      -->
+                      {{ range (where .Site.RegularPages "Section" "veroeffentlichung").ByDate.Reverse }}
+                          <li class="mb-2">
+                            <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark small">{{ .Date.Format "02.01.2006" }}: {{ .LinkTitle }} - {{ .Summary | plainify | truncate 10 }} 
+                            </a>
+                          </li>
                       {{ end }}
                   </ul>
               </div>

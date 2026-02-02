@@ -1,0 +1,8 @@
+{{ define "main" }}
+  {{ partial "breadcrumb.html" . }}
+  
+  <h4>{{ .Params.ort }}, {{ .Date.Format "02.01.2006" }} </h4>
+  <h2>{{ .Params.Title }}</h2>
+  {{ .Content }}
+ {{ end }}
+

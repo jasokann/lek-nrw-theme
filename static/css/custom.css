@@ -26,7 +26,7 @@ footer {
 }
 
 .nav-link {
-  color: #17a41c !important;
+  color: #000000 !important;
   font-weight: 600;
 }
 
@@ -34,4 +34,9 @@ footer {
   color: #138517 !important;
 }
 
-
+@media (min-width: 992px) {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Verhindert eine Lücke beim Drüberfahren */
+    }
+}
