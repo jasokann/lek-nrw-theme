@@ -2,7 +2,7 @@
     {{ $logo := .Site.Params.logo }}
     {{ if and $logo .Site.Params.showLogoOnHero }}
         <a href="{{ .Site.BaseURL }}">
-        <img src="{{ .Site.BaseURL }}{{ $logo }}" alt="{{ .Site.Title }}" class="hero-logo">
+        <img src="{{ $logo | relURL }}" alt="{{ .Site.Title }}" class="hero-logo">
         </a>
     {{ else }}
         <h1>{{ .Site.Title }}</h1>

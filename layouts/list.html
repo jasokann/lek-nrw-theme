@@ -4,18 +4,20 @@
     <h1>{{ .Title }}</h1>
     {{ .Content }}
 
-    <section class="children-grid">
-      <h2>Inhaltee</h2>
-      <ul>
-        {{ range .Pages.ByWeight }}
-          <li>
-            <a href="{{ .RelPermalink }}" class="child-link">
-              <h3>{{ .Title }}</h3>
+    {{ if .Pages }}
+      <section class="children-grid">
+        <h2>Weitere Seiten</h2>
+        <ul>
+          {{ range .Pages.ByWeight }}
+            <li>
+              <a href="{{ .RelPermalink }}" class="child-link">
+                <h3>{{ .Title }}</h3>
 
-            </a>
-          </li>
-        {{ end }}
-      </ul>
-    </section>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}  
   </article>
 {{ end }}

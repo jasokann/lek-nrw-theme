@@ -12,40 +12,42 @@
 {{- define "_partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- range .menuEntries }}
-    {{- $hasChildren := .HasChildren }}
-    {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
+    {{- if ne .Pre "hidden" }}  {{/* Zeige den Link nur, wenn 'pre' NICHT 'hidden' ist */}}
+      {{- $hasChildren := .HasChildren }}
+      {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
 
-    <li class="nav-item {{ if $hasChildren }}dropdown{{ end }}">
+      <li class="nav-item {{ if $hasChildren }}dropdown{{ end }}">
       
-      {{- if $hasChildren }}
-        <a class="nav-link dropdown-toggle {{ if $isActive }}active{{ end }}"
-          href="{{ .URL | relLangURL }}"
-          id="navbarDropdown-{{ .Identifier }}"
-          role="button"
+        {{- if $hasChildren }}
+          <a class="nav-link dropdown-toggle {{ if $isActive }}active{{ end }}"
+            href="{{ .URL | relLangURL }}"
+            id="navbarDropdown-{{ .Identifier }}"
+            role="button"
           
-          aria-expanded="false">
-          {{ .Name }}
-        </a>
+            aria-expanded="false">
+            {{ .Name }}
+          </a>
 
-        <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown-{{ .Identifier }}">
-          {{- range .Children }}
-            <li>
-              <a class="dropdown-item {{ if $page.IsMenuCurrent .Menu . }}active{{ end }}"
-                href="{{ .URL | relLangURL }}">
-                {{ .Name }}
-              </a>
-            </li>
-          {{- end }}
-        </ul>
+          <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdown-{{ .Identifier }}">
+            {{- range .Children }}
+              <li>
+                <a class="dropdown-item {{ if $page.IsMenuCurrent .Menu . }}active{{ end }}"
+                  href="{{ .URL | relLangURL }}">
+                  {{ .Name }}
+                </a>
+              </li>
+            {{- end }}
+          </ul>
 
-      {{- else }}
-        <a class="nav-link {{ if $isActive }}active{{ end }}"
-          href="{{ .URL | relLangURL }}">
-          {{ .Name }}
-        </a>
-      {{- end }}
+        {{- else }}
+          <a class="nav-link {{ if $isActive }}active{{ end }}"
+            href="{{ .URL | relLangURL }}">
+            {{ .Name }}
+          </a>
+        {{- end }}
 
-    </li>
-  {{- end }}
+      </li>
+    {{- end }}
+    {{- end }}
 
 {{- end }}
