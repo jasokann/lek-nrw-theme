@@ -40,3 +40,5 @@ footer {
         margin-top: 0; /* Verhindert eine Lücke beim Drüberfahren */
     }
 }
+
+.seo-hidden { display: none; }
