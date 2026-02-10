@@ -28,7 +28,7 @@
                       -->
                       {{ range (where .Site.RegularPages "Section" "veroeffentlichung").ByDate.Reverse }}
                           <li class="mb-2">
-                            <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark small">{{ .Date.Format "02.01.2006" }}: {{ .LinkTitle }} - {{ .Summary | plainify | truncate 10 }} 
+                            <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark small">{{ .Date.Format "02.01.2006" }}: {{ .LinkTitle | plainify | truncate 60 }} 
                             </a>
                           </li>
                       {{ end }}

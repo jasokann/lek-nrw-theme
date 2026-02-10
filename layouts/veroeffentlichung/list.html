@@ -13,7 +13,7 @@
                   {{ end }}
                   <div class="card-body d-flex flex-column">
                     <h6>{{ .Date.Format "02.01.2006" }}</h6>              
-                    <h5 class="card-title">{{ .Title }}</h5>
+                    <h5 class="card-title">{{ .Title | plainify | truncate 105 }}</h5>
                       {{ with .Params.description }}
                         <p class="card-text flex-grow-1">{{ . }}</p>
                       {{ end }}
