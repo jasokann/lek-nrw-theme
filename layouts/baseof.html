@@ -25,7 +25,7 @@
                         <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">PM – Forderungen zur Verwendung des Sondervermögens...</a></li>
                         <li class="mb-2"><a href="#" class="text-decoration-none text-dark small">20 Jahre Landeselternkonferenz NRW</a></li>
                       -->
-                      {{ range (where .Site.RegularPages "Section" "veroeffentlichung").ByDate.Reverse }}
+                      {{ range (where .Site.RegularPages "Section" "veroeffentlichungen").ByDate.Reverse }}
                           <li class="mb-2">
                             <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark small">{{ .Date.Format "02.01.2006" }}: {{ .LinkTitle | plainify | truncate 60 }} 
                             </a>
